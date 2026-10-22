@@ -12,10 +12,9 @@ type LocationInfo = {
 
 interface LocationsProps {
   ceremony: LocationInfo;
-  reception: LocationInfo;
 }
 
-export const Locations: React.FC<LocationsProps> = ({ ceremony, reception }) => {
+export const Locations: React.FC<LocationsProps> = ({ ceremony }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export const Locations: React.FC<LocationsProps> = ({ ceremony, reception }) => 
   }, []);
 
   const renderLocation = (location: LocationInfo) => (
-    <div key={location.name} className="rounded-[28px] border border-[#dce8f2] bg-[#f7fafc] p-4 shadow-[0_8px_28px_rgba(12,27,51,0.04)]">
+    <div key={location.name} className="rounded-[28px] border border-[#dce8f2] bg-[#f7fafc] p-4 shadow-[0_8px_28px_rgba(12,27,51,0.04)] text-left">
       <div className="mb-3 flex items-center gap-2">
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#eaf2fb] text-[#4a729c]">
           <MapPin className="h-4 w-4" />
@@ -77,13 +76,12 @@ export const Locations: React.FC<LocationsProps> = ({ ceremony, reception }) => 
             Το μέρος μας
           </p>
           <h2 className="font-bodoni italic text-3xl sm:text-4xl text-[#0c1b33] font-normal tracking-wide">
-            Τοποθεσίες
+            Τοποθεσία
           </h2>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="mx-auto max-w-lg">
           {renderLocation(ceremony)}
-          {renderLocation(reception)}
         </div>
       </div>
     </section>

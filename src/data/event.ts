@@ -15,14 +15,6 @@ export interface EventData {
       mapQuery: string;
       embedUrl: string;
     };
-    reception: {
-      title: string;
-      time: string;
-      name: string;
-      address: string;
-      mapQuery: string;
-      embedUrl: string;
-    };
   };
   story: {
     title: string;
@@ -59,14 +51,6 @@ export const eventData: EventData = {
       address: "Αιγάλεω, Αττική",
       mapQuery: "https://www.google.com/maps/dir/?api=1&destination=Ieros+Naos+Ypsoseos+Timiou+Stavrou+Aigaleo",
       embedUrl: "https://maps.google.com/maps?q=Plateia+Estavromenou+Aigaleo&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    },
-    reception: {
-      title: "Η Δεξίωση",
-      time: "15:00",
-      name: "Κτήμα 28",
-      address: "Καπανδρίτι, Αττική",
-      mapQuery: "https://www.google.com/maps/dir/?api=1&destination=Ktima+28+Kapandriti",
-      embedUrl: "https://maps.google.com/maps?q=Ktima+28+Kapandriti&t=&z=15&ie=UTF8&iwloc=&output=embed",
     },
   },
   story: {
