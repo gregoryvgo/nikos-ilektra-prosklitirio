@@ -10,8 +10,8 @@ interface Props {
 const {
   title = 'Νίκος & Ηλέκτρα - Προσκλητήριο Γάμου',
   description = 'Σας προσκαλούμε να γιορτάσετε μαζί μας την πιο ξεχωριστή ημέρα της ζωής μας!',
-  // Δείχνουμε τον σωστό τοπικό φάκελο
-  image = '/images/og-wedding-final.jpg',
+  // Βάλαμε νέο όνομα εδώ για να ξεκολλήσει η cache του FB
+  image = '/images/og-wedding-v2.jpg',
 } = Astro.props;
 
 // Επαναφέρουμε τα καθαρά URL για να δουλεύουν άψογα Viber & Instagram
@@ -38,6 +38,11 @@ const socialImageURL = new URL(image, canonicalURL).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImageURL} />
+    
+    {/* Οι διαστάσεις που αναγκάζουν το Facebook να διαβάσει τη νέα εικόνα */}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
     
     {/* Προσθέσαμε το παρακάτω για να φύγει το warning */}
     <meta property="fb:app_id" content="2369629840457670" />
