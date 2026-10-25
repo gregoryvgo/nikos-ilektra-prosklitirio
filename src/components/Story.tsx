@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
-interface StoryProps {
-  title?: string;
-  text?: string;
-  coupleHashtag?: string;
-  images?: string[];
-}
-
 const defaultImages = [
-   '/images/20251117_170012.jpg',
-   '/images/Messenger_creation_FECBF82D-8453-4B02-B251-864E466C72D0.jpeg',
-     '/images/IMG-d802b9d34b2fddf9e6d2446e679ed884-V.jpg',
-     '/images/IMG-20221106-WA0003.jpg',
+    '/images/20251117_170012.jpg',
+    '/images/Messenger_creation_FECBF82D-8453-4B02-B251-864E466C72D0.jpeg',
+    '/images/IMG-d802b9d34b2fddf9e6d2446e679ed884-V.jpg',
+    '/images/IMG-20221106-WA0003.jpg',
     '/images/IMG-20220619-WA0002.jpg',
     '/images/20240318_183927.jpg',
-  '/images/Messenger_creation_1447DC2B-36B5-4A4A-8306-6288031966AB.jpeg',
-  '/images/VideoCapture_20260407-090602.jpg',
+    '/images/Messenger_creation_1447DC2B-36B5-4A4A-8306-6288031966AB.jpeg',
+    '/images/VideoCapture_20260407-090602.jpg',
 ];
 
 const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
+const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-export const Story: React.FC<StoryProps> = ({
+export const Story = ({
   title = 'Πώς γνωριστήκαμε',
   images = defaultImages,
 }) => {
@@ -44,12 +37,12 @@ export const Story: React.FC<StoryProps> = ({
     return () => clearInterval(timer);
   }, [images.length, isPaused]);
 
-  const paginate = (newDirection: number) => {
+  const paginate = (newDirection) => {
     setDirection(newDirection);
     setCurrentIndex((prev) => (prev + newDirection + images.length) % images.length);
   };
 
-  const handleDragEnd = (_: any, { offset, velocity }: PanInfo) => {
+  const handleDragEnd = (_, { offset, velocity }) => {
     const swipe = swipePower(offset.x, velocity.x);
 
     if (swipe < -swipeConfidenceThreshold || offset.x < -50) {
@@ -89,7 +82,7 @@ export const Story: React.FC<StoryProps> = ({
           </div>
         </div>
 
-        {/* Photo Gallery (Ακόμα πιο μεγάλο Swipeable Polaroid Stack) */}
+        {/* Photo Gallery (Swipeable Polaroid Stack) */}
         <div
           className="relative mx-auto w-full max-w-[480px] group select-none"
           onMouseEnter={() => setIsPaused(true)}
@@ -102,7 +95,7 @@ export const Story: React.FC<StoryProps> = ({
           {/* Foreground Polaroid Card σε καθαρό λευκό */}
           <div className="relative bg-white p-4 sm:p-5 rounded-2xl shadow-[0_16px_40px_rgba(12,27,51,0.06)] border border-[#dce8f2]">
             
-            {/* Image Stage (Πιο μεγάλο και ευρύχωρο) */}
+            {/* Image Stage */}
             <div className="relative aspect-[4/5] sm:aspect-[4/5] w-full overflow-hidden rounded-xl bg-stone-100 cursor-grab active:cursor-grabbing touch-pan-y">
               <AnimatePresence initial={false} custom={direction}>
                 <motion.img
@@ -184,20 +177,58 @@ export const Story: React.FC<StoryProps> = ({
           </div>
         </div>
 
-        {/* Story Narrative Box (Μεγαλύτερη γραμματοσειρά κειμένου) */}
+        {/* Story Narrative Box */}
         <div className="relative px-7 py-8 rounded-2xl bg-[#f3f7fb] border border-[#dce8f2] shadow-[0_4px_20px_rgba(12,27,51,0.03)]">
           <span className="font-bodoni italic text-6xl text-[#4a729c]/25 absolute -top-4 left-3 select-none leading-none">
             “
           </span>
           <div className="font-serif text-base sm:text-lg leading-relaxed text-stone-700 font-light text-justify pt-3 px-1 space-y-5">
             <p>
-              Όλα ξεκίνησαν σαν μια τυχαία σύμπτωση σε μια πόλη που δεν ησυχάζει ποτέ. Δύο παράλληλες διαδρομές που, χωρίς να το γνωρίζουν, βάδιζαν προς το ίδιο σημείο συνάντησης. Μια ματιά, ένα αυθόρμητο χαμόγελο και μια πρώτη συζήτηση έμοιαζε να μην έχει τέλος ήταν αρκετά για να αλλάξουν τα πάντα.
+              Δεν ήξερε την Αθήνα, έτσι πήρε πιο νωρίς τον δρόμο για την στάση του τρόλεϊ κοντά στο Σύνταγμα.
             </p>
             <p>
-              Από εκείνη τη στιγμή, η καθημερινότητα απέκτησε άλλο νόημα. Τα βράδια γέμισαν με ατελείωτες βόλτες, τα ταξίδια έγιναν κοινές εμπειρίες και οι μικρές, απλές στιγμές μετατράπηκαν στις πιο όμορφες αναμνήσεις. Μέσα από τα γέλια, τα όνειρα, αλλά και τις προκλήσεις, ανακαλύψαμε ότι το σπίτι μας δεν είναι ένας τόπος, αλλά ο ένας δίπλα στον άλλον.
+              Φανερά απογοητευμένος με τον εαυτό μου, που δεν της μίλησα πιο πολύ, έκατσα μια ωρίτσα ακόμα με τους φίλους μου και έφυγα για σπίτι. 
             </p>
             <p>
-              Σήμερα, με την ίδια βαθιά αγάπη και την υπόσχεση να μοιραζόμαστε κάθε επόμενη σελίδα, επιλέγουμε να ενώσουμε τις ζωές μας για πάντα, ξεκινώντας το πιο όμορφο κοινό μας κεφάλαιο.
+              Ανέμελος, με άδεια τσέπη και μυαλό, φορώντας ακουστικά, κοίταζα έξω από το παράθυρο τα αστικά φώτα που λαμπυρίζαν μέσα στη νύχτα. Γυρνώντας το κεφάλι μου·
+            </p>
+            <p className="font-medium text-[#0c1b33] text-left italic">
+              Την είδα. 
+            </p>
+            <p>
+              Καθόταν προσεκτικά στην θέση πίσω από τον οδηγό του τρόλεϊ. Κοιτούσε και εκείνη έξω σαν να ήταν στο εξωτερικό. 
+            </p>
+            <p className="font-medium text-[#0c1b33] text-left italic">
+              Έλαμπε.
+            </p>
+            <p className="italic">
+              "Ηλέκτρα;" είπα.
+            </p>
+            <p className="italic">
+              "Νίκο;" μου απάντησε.
+            </p>
+            <p>
+              Οι στάσεις περνούσαν και έφτανα στην δικιά μου. Την πέρασα.<br />
+              Η καρδιά μου έλεγε "Κάτσε μια ακόμα".<br />
+              "Και άλλη μία, κι άλλη μια…" 
+            </p>
+            <p>
+              Ώσπου την ώρα που εν τέλει κατέβαινα, με το ένα πόδι έξω από την ανοιχτή πόρτα· Την ρώτησα.
+            </p>
+            <p className="italic">
+              "Έχεις σχολή αύριο πρωί;" 
+            </p>
+            <p className="italic">
+              "Όχι" απάντησε.
+            </p>
+            <p className="italic">
+              "Έλα να σου μάθω την Κυψέλη" είπα.
+            </p>
+            <p className="italic">
+              "Εντάξει." 
+            </p>
+            <p className="font-medium text-[#0c1b33] text-left pt-2">
+              Εκείνο το υπέροχο βράδυ, μας έφερε στην πιο σημαντική ημέρα της ζωής μας.
             </p>
           </div>
           <span className="font-bodoni italic text-6xl text-[#4a729c]/25 absolute -bottom-6 right-3 select-none leading-none">
@@ -209,3 +240,5 @@ export const Story: React.FC<StoryProps> = ({
     </div>
   );
 };
+
+export default Story;
